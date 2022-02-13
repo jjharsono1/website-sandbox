@@ -1,8 +1,4 @@
 
----
-title: Network Anomaly Dectection
----
-
 # Table of Contents
 - [Introduction](#introduction)
 - [Methodology](#methodology)
