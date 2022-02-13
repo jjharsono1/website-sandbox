@@ -1,4 +1,7 @@
-
+---
+layout: default
+title: Network Anom
+---
 # Table of Contents
 - [Introduction](#introduction)
 - [Methodology](#methodology)
