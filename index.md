@@ -1,5 +1,5 @@
+
 ---
-layout: post
 title: Network Anomaly Dectection
 ---
 
