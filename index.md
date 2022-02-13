@@ -1,3 +1,7 @@
+---
+layout: post
+title: Network Anomaly Dectection
+---
 
 # Table of Contents
 - [Introduction](#introduction)
