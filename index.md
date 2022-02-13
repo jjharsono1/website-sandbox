@@ -1,4 +1,3 @@
-% Network Anomaly Detection
 
 # Table of Contents
 - [Introduction](#introduction)
