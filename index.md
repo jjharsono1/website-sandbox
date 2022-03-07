@@ -58,7 +58,7 @@ We will be using data generated from DANE (Data Automation and Network Emulation
     
 **Exploring Packets Per Second Feature**
 
-|First 180 Seconds| Last 120 Seconds|
+|-|First 180 Seconds| Last 120 Seconds|
 |-|----------------|-----------------|
 |Mean|1783.72|428.43|
 |Standard Deviation|710.10|260.22|
