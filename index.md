@@ -4,7 +4,7 @@
 - [Methodology](#methodology)
     - [The Data](#the-data)
     - [Definition of an Anomaly](#definition-of-an-anomaly)
-    - [EDA & Feature Engineering](#eda-&-feature-engineering)
+    - [EDA & Feature Engineering](#eda-and-feature-engineering)
     - [Anomaly Detection Methods and Models](#exploration-of-anomaly-detection-methods)
 - [Results](#results)
     - [Performance Measures](#performance-measures)
@@ -14,7 +14,7 @@
     - [Improvements](#improvements)
 - [References](#references)
 - [Appendix](#appendix)
-- 
+
 # Introduction
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Viasat Inc. is an American communications company that provides high-speed satellite broadband services and secure networking systems covering military and commercial markets. Therefore, ensuring high quality network performance is crucial for maintaining customer satisfaction. Fundamental factors that affect network performance are packet loss and latency. </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Small units of data that are sent and recieved across a network are called packets, and packet loss occurs when one or more of these packets fails to reach its intended destination. Latency is the delay between a user's action and a web application's response to that action. High quantities of each of these often results in slow service and network disruptions for the user.</p> 
@@ -40,14 +40,16 @@ We will be using data generated from DANE (Data Automation and Network Emulation
 | Packet_times | Time in milliseconds that the packet arrived |
 | Packet_size | Size of the bytes of the packet | 
 | Packet_dirs | Which endpoint was the source of each packet that arrived | 
+
 <br>
+
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  We ran only two scenarios at once to prevent overloading our CPU by running too many DANE scenarios concurrently. Each DANE run is 5 minutes long.  The configuration change happens at the 180 second mark and what we configure for our packet loss rate determines the likelihood of each packet being dropped. This way, we are able to simulate an anomaly within our data and are able to simulate packet loss in a more realistic manner. Our steady state had a packet loss ratio of 1/5,000 and a latency of 40 ms. We are focused on identifying changes of a factor of 4 and above. In our case a packet loss ratio of 1/1,250  and a latency of 160 ms or greater or a packet loss ratio of 1/20,000 and latency of 10 ms. </p>
 
 ### Definition of an Anomaly
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The type of behavior we are looking for is different from what a conventional anomaly would behave like. Typical anomalies are characterized by significantly large spikes or drops in a feature. The behavior we are looking for is more closely related to anomalous regions where the degradation in the network continues; these anomalies resemble shifts. As we will show in the next section, spikes in our features that would normally resemble anomalous behavior are perfectly random and not caused by any change in network quality. These anomalies would be considered false positives if detected.</p>
 
-### EDA & Feature Engineering
+### EDA and Feature Engineering
 
 ![](EDA.png?raw=true)
 <br>
@@ -64,6 +66,7 @@ We will be using data generated from DANE (Data Automation and Network Emulation
 |Min|680|152|
 
 ### Exploration of Anomaly Detection Methods
+
 **I.** Forecasting
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Since we are dealing with time series data, we can create an anomaly detection model through the use of forecasting techniques. The basic concept is that we will pick a feature, in this case total packets sent per second (volume of traffic) and build a forecast. If the expected value is outside of our prediction interval (threshold) we will flag it as an anomaly. We are employing a multivariate time series forecast because we are using predictors other than the series (a.k.a exogenous variables).</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We will be focusing on building an ARIMA (Auto Regressive Integrated Moving Average) model. This model is actually a class of models that ‘explains’ a given time series based on its own past values, that is, its own lags and the lagged forecast errors, so that equation can be used to forecast future values.</p> 
